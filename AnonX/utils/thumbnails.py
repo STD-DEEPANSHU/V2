@@ -79,7 +79,7 @@ async def gen_thumb(videoid, user_id):
         d = np.array(a)
         e = np.dstack((c, d))
         f = Image.fromarray(e)
-        x = f.resize((107, 107))
+        x = f.resize((207, 207))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
@@ -112,7 +112,7 @@ async def gen_thumb(videoid, user_id):
         logo.thumbnail((665, 665), Image.LANCZOS)
         width = int((1280 - 665) / 1)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 2, 150), mask=logo)
+        background.paste(logo, (width + 1, 150), mask=logo)
         background.paste(x, (710, 427), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
@@ -124,7 +124,7 @@ async def gen_thumb(videoid, user_id):
         para = textwrap.wrap(title, width=32)
         try:
             draw.text(
-                (460, 25),
+                (460, 35),
                 f"STARTED PLAYING",
                 fill="white",
                 stroke_width=3,
@@ -134,7 +134,7 @@ async def gen_thumb(videoid, user_id):
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    ((1280 - text_w) / 3, 130),
+                    ((1280 - text_w) / 4, 120),
                     f"{para[0]}",
                     fill="white",
                     stroke_width=1,
@@ -144,7 +144,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    ((1280 - text_w) / 3, 150),
+                    ((1280 - text_w) / 4, 150),
                     f"{para[1]}",
                     fill="white",
                     stroke_width=1,

@@ -79,7 +79,7 @@ async def gen_thumb(videoid, user_id):
         d = np.array(a)
         e = np.dstack((c, d))
         f = Image.fromarray(e)
-        x = f.resize((207, 207))
+        x = f.resize((190, 190))
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
@@ -109,11 +109,11 @@ async def gen_thumb(videoid, user_id):
 
         crop_img = Image.open(f"cache/cropped{videoid}.png")
         logo = crop_img.convert("RGBA")
-        logo.thumbnail((665, 665), Image.LANCZOS)
-        width = int((1280 - 665) / 1)
+        logo.thumbnail((610, 610), Image.LANCZOS)
+        width = int((1280 - 610) / 1)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 1, 100), mask=logo)
-        background.paste(x, (710, 527), mask=x)
+        background.paste(x, (710, 510), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -124,7 +124,7 @@ async def gen_thumb(videoid, user_id):
         para = textwrap.wrap(title, width=32)
         try:
             draw.text(
-                (460, 20),
+                (460, 18),
                 f"STARTED PLAYING",
                 fill="white",
                 stroke_width=3,
@@ -134,7 +134,7 @@ async def gen_thumb(videoid, user_id):
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    ((1280 - text_w) / 5.5, 100),
+                    ((1280 - text_w) / 5.50, 100),
                     f"{para[0]}",
                     fill="white",
                     stroke_width=1,
@@ -144,7 +144,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    ((1280 - text_w) / 5.5, 150),
+                    ((1280 - text_w) / 5.50, 150),
                     f"{para[1]}",
                     fill="white",
                     stroke_width=1,

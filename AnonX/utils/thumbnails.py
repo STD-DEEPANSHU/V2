@@ -112,7 +112,7 @@ async def gen_thumb(videoid, user_id):
         logo.thumbnail((530, 530), Image.LANCZOS)
         width = int((1280 - 530) / 1)
         background = Image.open(f"cache/temp{videoid}.png")
-        background.paste(logo, (width + 1, 30), mask=logo)
+        background.paste(logo, (width + 1, 40), mask=logo)
         background.paste(x, (710, 520), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 

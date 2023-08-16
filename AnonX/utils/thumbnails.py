@@ -127,14 +127,14 @@ async def gen_thumb(videoid, user_id):
                 (460, 25),
                 f"STARTED PLAYING",
                 fill="white",
-                stroke_width=3,
+                stroke_width=1,
                 stroke_fill="grey",
                 font=font,
             )
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    ((1280 - 1200) / 3.50, 590),
+                    ((1280 - 1150) / 3.50, 590),
                     f"{para[0]}",
                     fill="white",
                     stroke_width=1,

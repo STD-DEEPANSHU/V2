@@ -155,7 +155,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - 1200) / 1, 650),
+            ((1280 - 180) / 1, 680),
             f"                  {duration}",
             fill="white",
             font=arial,

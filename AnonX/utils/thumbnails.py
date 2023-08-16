@@ -113,7 +113,7 @@ async def gen_thumb(videoid, user_id):
         width = int((1280 - 1) / 1)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 1, 45), mask=logo)
-        background.paste(x, (710, 250), mask=x)
+        background.paste(x, (650, 250), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -155,8 +155,8 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - text_w) / 1, 650),
-            f"              {duration}",
+            ((1280 - 1200) / 1, 650),
+            f"                  {duration}",
             fill="white",
             font=arial,
         )

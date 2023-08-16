@@ -85,7 +85,7 @@ async def gen_thumb(videoid, user_id):
         bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
+        background = image2.filter(filter=ImageFilter.BoxBlur(1))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
 
@@ -113,7 +113,7 @@ async def gen_thumb(videoid, user_id):
         width = int((1280 - 1) / 1)
         background = Image.open(f"cache/temp{videoid}.png")
         background.paste(logo, (width + 1, 45), mask=logo)
-        background.paste(x, (710, 200), mask=x)
+        background.paste(x, (710, 250), mask=x)
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
@@ -155,7 +155,7 @@ async def gen_thumb(videoid, user_id):
             pass
         text_w, text_h = draw.textsize(f"Duration: {duration} Mins", font=arial)
         draw.text(
-            ((1280 - text_w) / 0.50, 630),
+            ((1280 - text_w) / 1, 630),
             f"{duration}",
             fill="white",
             font=arial,
@@ -225,7 +225,7 @@ async def gen_qthumb(videoid, user_id):
         bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
+        background = image2.filter(filter=ImageFilter.BoxBlur(1))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
 

@@ -31,9 +31,9 @@ def add_corners(im):
     im.putalpha(mask)
 
 
-async def gen_thumb(videoid, user_id):
-    if os.path.isfile(f"cache/{videoid}_{user_id}.png"):
-        return f"cache/{videoid}_{user_id}.png"
+async def gen_thumb(videoid, chat_id, user_id):
+    if os.path.isfile(f"cache/{videoid}_{chat_id}_{user_id}.png"):
+        return f"cache/{videoid}_{chat_id}_{user_id}.png"
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
         results = VideosSearch(url, limit=1)
@@ -124,18 +124,18 @@ async def gen_thumb(videoid, user_id):
         para = textwrap.wrap(title, width=23)
         try:
             draw.text(
-                (100, 25),
+                (115, 25),
                 f"STARTED PLAYING",
                 fill="white",
                 stroke_width=3,
-                stroke_fill="grey",
+                stroke_fill="black",
                 font=font,
             )
             if para[0]:
                 text_w, text_h = draw.textsize(f"{para[0]}", font=font)
                 draw.text(
-                    ((1280 - 1140) / 3.50, 595),
-                    f"{para[0]} {para[1]}",
+                    ((1280 - 1140) / 3.50, 590),
+                    f"{para[0]}{para[1]}",
                     fill="white",
                     stroke_width=1,
                     stroke_fill="white",
@@ -164,16 +164,16 @@ async def gen_thumb(videoid, user_id):
             os.remove(f"cache/thumb{videoid}.png")
         except:
             pass
-        background.save(f"cache/{videoid}_{user_id}.png")
-        return f"cache/{videoid}_{user_id}.png"
+        background.save(f"cache/{videoid}_{chat_id}_{user_id}.png")
+        return f"cache/{videoid}_{chat_id}_{user_id}.png"
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL
 
 
 async def gen_qthumb(videoid, user_id):
-    if os.path.isfile(f"cache/que{videoid}_{user_id}.png"):
-        return f"cache/que{videoid}_{user_id}.png"
+    if os.path.isfile(f"cache/que{videoid}_{chat_id}_{user_id}.png"):
+        return f"cache/que{videoid}_{chat_id}_{user_id}.png"
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
         results = VideosSearch(url, limit=1)
@@ -221,6 +221,22 @@ async def gen_qthumb(videoid, user_id):
         f = Image.fromarray(e)
         x = f.resize((107, 107))
 
+        try:
+            group_pic = await app.get_chat_photo(chat_id)
+            gpic = await app.download_media(group_pic[0]['file_id'], file_name=f'{chat_id}.jpg')
+        except:
+            lele = await app.get_chat_photo(app.id)
+            gpic = await app.download_media(lele[0]['file_id'], file_name=f'{app.id}.jpg')
+        xy = Image.open(gpic)
+        a = Image.new('R', [640, 640], 0)
+        b = ImageDraw.Draw(a)
+        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 255, outline = "white")
+        c = np.array(xy)
+        d = np.array(a)
+        e = np.dstack((c, d))
+        f = Image.fromarray(e)
+        x = f.resize((107, 107))
+        
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
@@ -305,9 +321,9 @@ async def gen_qthumb(videoid, user_id):
             os.remove(f"cache/thumb{videoid}.png")
         except:
             pass
-        file = f"cache/que{videoid}_{user_id}.png"
+        file = f"cache/que{videoid}_{chat_id}_{user_id}.png"
         background.save(f"cache/que{videoid}_{user_id}.png")
-        return f"cache/que{videoid}_{user_id}.png"
+        return f"cache/que{videoid}_{chat_id}_{user_id}.png"
     except Exception as e:
         print(e)
         return YOUTUBE_IMG_URL

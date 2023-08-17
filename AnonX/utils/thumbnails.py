@@ -80,7 +80,23 @@ async def gen_thumb(videoid, chat_id, user_id):
         e = np.dstack((c, d))
         f = Image.fromarray(e)
         x = f.resize((200, 200))
-
+        
+        try:
+            group_pic = await app.get_chat_photo(chat_id)
+            gpic = await app.download_media(group_pic[0]['file_id'], file_name=f'{chat_id}.jpg')
+        except:
+            lele = await app.get_chat_photo(app.id)
+            gpic = await app.download_media(lele[0]['file_id'], file_name=f'{app.id}.jpg')
+        xy = Image.open(gpic)
+        a = Image.new('R', [640, 640], 0)
+        b = ImageDraw.Draw(a)
+        b.pieslice([(0, 0), (640,640)], 0, 360, fill = 255, outline = "white")
+        c = np.array(xy)
+        d = np.array(a)
+        e = np.dstack((c, d))
+        f = Image.fromarray(e)
+        x = f.resize((107, 107))
+        
         youtube = Image.open(f"cache/thumb{videoid}.png")
         bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)

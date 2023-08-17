@@ -85,7 +85,7 @@ async def gen_thumb(videoid, user_id):
         bg = Image.open(f"AnonX/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
+        background = image2.filter(filter=ImageFilter.BoxBlur(10))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
 
@@ -117,14 +117,14 @@ async def gen_thumb(videoid, user_id):
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("AnonX/assets/font2.ttf", 40)
-        ImageFont.truetype("AnonX/assets/font2.ttf", 65)
-        arial = ImageFont.truetype("AnonX/assets/font2.ttf", 25)
-        ImageFont.truetype("AnonX/assets/font.ttf", 25)
-        para = textwrap.wrap(title, width=28)
+        font = ImageFont.truetype("AnonX/assets/font2.ttf", 38)
+        ImageFont.truetype("AnonX/assets/font2.ttf", 63)
+        arial = ImageFont.truetype("AnonX/assets/font2.ttf", 23)
+        ImageFont.truetype("AnonX/assets/font.ttf", 23)
+        para = textwrap.wrap(title, width=26)
         try:
             draw.text(
-                (450, 25),
+                (350, 25),
                 f"STARTED PLAYING",
                 fill="white",
                 stroke_width=3,
@@ -144,7 +144,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    ((1280 - text_w) / 1, 580),
+                    ((1280 - 1200) / 3.50, 580),
                     f"{para[1]}",
                     fill="white",
                     stroke_width=1,

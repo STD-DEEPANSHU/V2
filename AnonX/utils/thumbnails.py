@@ -124,7 +124,7 @@ async def gen_thumb(videoid, user_id):
         para = textwrap.wrap(title, width=23)
         try:
             draw.text(
-                (150, 25),
+                (100, 25),
                 f"STARTED PLAYING",
                 fill="white",
                 stroke_width=3,

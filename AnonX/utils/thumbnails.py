@@ -117,11 +117,11 @@ async def gen_thumb(videoid, user_id):
         background.paste(image3, (0, 0), mask=image3)
 
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("AnonX/assets/font2.ttf", 45)
-        ImageFont.truetype("AnonX/assets/font2.ttf", 70)
-        arial = ImageFont.truetype("AnonX/assets/font2.ttf", 30)
-        ImageFont.truetype("AnonX/assets/font.ttf", 30)
-        para = textwrap.wrap(title, width=32)
+        font = ImageFont.truetype("AnonX/assets/font2.ttf", 40)
+        ImageFont.truetype("AnonX/assets/font2.ttf", 65)
+        arial = ImageFont.truetype("AnonX/assets/font2.ttf", 25)
+        ImageFont.truetype("AnonX/assets/font.ttf", 25)
+        para = textwrap.wrap(title, width=28)
         try:
             draw.text(
                 (450, 25),
@@ -144,7 +144,7 @@ async def gen_thumb(videoid, user_id):
             if para[1]:
                 text_w, text_h = draw.textsize(f"{para[1]}", font=font)
                 draw.text(
-                    ((1280 - text_w) / 2, 580),
+                    ((1280 - text_w) / 1, 580),
                     f"{para[1]}",
                     fill="white",
                     stroke_width=1,
